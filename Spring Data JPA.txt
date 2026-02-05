@@ -1,0 +1,98 @@
+Spring Data JPA
+·       Spring Data JPA is a powerful library within the spring framework that makes data access in Java applications using JPA (Java Persistence API) much easier and more efficient.
+·   	Purpose:
+o   Simplifies working with relational databases in your spring applications.
+o   Eliminates the need for writing boilerplate code for basic CRUD (Create, Read, Update, and Delete) operations and complex queries.
+·       Spring Data JPA will provide implementation for all DAO operations using Proxy Design Pattern.
+Benefits:
+·       Improved developer experience:
+o    Focus on the business logic of your application instead of data access details.
+·       Increased productivity:
+o   Faster development cycles due to simplified data access methods.
+·       Automatic entity mapping:
+o   Spring Data JPA automatically maps your POJOs (Plain Old Java Objects) to database tables based on annotations and conventions, saving you time and effort.
+·       Support for complex queries:
+o   While providing convenience for basic operations, Spring Data JPA still allows for building complex queries using JPA's Criteria API or QueryDSL for specific needs.
+·       Reduced boilerplate code:
+o   The Spring Data JPA provides the default implementation for common methods by its repository interfaces.
+o   No more manual creation of DAOs (Data Access Objects) or writing extensive SQL queries.
+·       Spring Data JPA we can execute queries in 3 ways
+o   Using Pre-defined Methods (Repository in built methods)
+o   By Writing findBy Methods (Spring DSL)
+o   By Writing custom Queries (@Query)
+How it works:
+·       Create Java classes annotated with JPA annotations to represent your database entities.
+·       Define repository interfaces extending Spring Data JPA interfaces like JpaRepository or CrudRepository.
+·       Spring Data JPA automatically generates implementations for these interfaces at runtime, handling data access logic based on the methods you define.
+
+
+Database Connection Properties:
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/devflipkart?createDatabaseIfNotExist=true 
+spring.datasource.username=root
+spring.datasource.password=root
+spring.jpa.hibernate.ddl-auto=update
+
+ 
+JPA Annotations:
+1. 	@Entity:
+·       The java class which represents DB Table structure is called as Entity class
+·   	The class which is mapped with DB Table is called as Entity Class
+·   	It is class level annotation
+·   	It is mandatory annotation
+2. 	@Table:
+·       It is used to map class name to particular name
+·   	It is class level annotation
+·   	It is optional annotation
+·       If @Table is not mentioned then SB Data considers our class name as table name
+3. 	@Id:
+·       It is represent variable which mapped with PK
+·   	It is field level annotation
+·   	It is mandatory annotation
+4. 	@Column:
+·       It is used to map entity class variable name with table column name
+·   	It is field level annotation
+·   	It is optional annotation
+·       If we don't use @Column, SB data will consider variable name as column name
+5. 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+·   	It is database dependent
+·   	Doesn't support for Oracle
+·       Supports for MySQL
+Schema Generation
+·       ORM frameworks are having support to generate schema in runtime
+·       ORM frameworks can create table and can create sequence in runtime required for app
+·       By Default, Schema Generation mode will be OFF
+·       To enable schema generation, we will use ddl-auto property
+o   spring.jpa.hibernate.ddl-auto=create/create-drop/update
+·       We have several possible values for ddl-auto property
+o   Create
+o   Create-drop
+o   Update
+o   Validate
+o   None
+·       create: means every time new table will be created
+·       create-drop: it creates table and drops table at end of operation
+·       update: If table is not available it will create if table is already available it will                                                                                                 	just perform operation
+·   	validate: It is used to validate schema details
+Domain Specific Language (DSL):
+·       Spring data JPA not only provides implementation for commonly used methods but also provides a way to add custom methods.
+·       Spring Data JPA QueryDSL:
+
+Development Steps
+1. 	Create Spring Boot Project
+a. 	groupid : com.javaexpress
+b. 	artifactid : any name
+c.  	version : Java 17
+d. 	Type : maven
+e. 	Packaging : jar
+f.  	Language: java
+2. 	Add two dependencies
+a. 	Spring-boot-starter-data-jpa
+b. 	MySQL-connector-j driver
+3. 	Add Database properties in application.properties file
+4. 	Create model package
+a. 	Add Model Class
+             5. Create repository package
+                  a.     Add repository interface
+       6.  	Do operations in main methods
